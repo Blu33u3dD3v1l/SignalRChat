@@ -1,34 +1,99 @@
 ﻿@page 
 
-<div class="container">
-    <div class="row p-1">
-        <div class="col-1">User</div>
-        <div class="col-5"><input type="text" id="userInput" /></div>
-    </div>
+<style>
+    .chat-container {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
 
-     <div>
-        <div class="col-1">Message</div>
-        <div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>
-    </div>
+    .chat-header,
+    .chat-message-input,
+    .chat-messages {
+        display: flex;
+        align-items: center;
+    }
 
-    <div>
-        <div class="col-6 text-end">
-            <input type="button" id="sendButton" value="Send Message"/>
+        .chat-header input,
+        .chat-message-input input {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+    .chat-message-input {
+        margin-top: 10px;
+        margin-right: 800px;
+    }
+
+    .user-image-container {
+        margin-right: 10px;
+        position: relative; /* Required for status indicator positioning */
+    }
+
+        .user-image-container img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover; /* Maintain aspect ratio and crop if necessary */
+        }
+
+    #messageList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        #messageList li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+            #messageList li:last-child {
+                border-bottom: none;
+            }
+
+    .user-status {
+        position: absolute; /* Position the status indicator */
+        bottom: 0;
+        right: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #ddd; /* Default offline color */
+    }
+</style>
+
+<div class="container chat-container">   
+    <div class="row p-1 chat-messages">
+        <div class="col-6">
+            <ul id="messageList"></ul>
         </div>
     </div>
 
-    <div>
+    <div class="row p-1">
         <div class="col-6">
             <hr />
         </div>
     </div>
 
-    <div>
-        <div class="col-6">
-            <ul id="messageList"></ul>
+    <div class="row p-1 chat-message-input">
+        <div class="col-6 text-end">
+            <span id="currentTime"></span>
+            <input type="button" id="sendButton" value="Send Message" />
         </div>
+        <div class="col-5 message-input">
+            <input type="text" class="w-100" id="messageInput" placeholder="Type your message" />
+        </div>       
     </div>
 </div>
+
+
+
 
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
