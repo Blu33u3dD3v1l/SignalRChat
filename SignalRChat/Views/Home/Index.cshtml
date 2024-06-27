@@ -74,17 +74,30 @@
             <ul id="messageList"></ul>
         </div>
     </div>
+    
 
     <div class="row p-1">
         <div class="col-6">
             <hr />
         </div>
     </div>
+    <div class="row">
+        <div class="col-3">ConnectionId</div>
+        <div class="col-6"><span id="connectionId"></span></div>
+    </div>
+    <div>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-2">ReceiverId</div>
+        <div class="col-4"><input type="text" id="receiverId"/></div>
 
+    </div>
     <div class="row p-1 chat-message-input">
         <div class="col-6 text-end">
             <span id="currentTime"></span>
-            <input type="button" id="sendButton" value="Send Message" />
+            <input type="button" id="sendButton" value="Send Message To All" />
+            <input type="button" id="sendUser" value="Send Message To User" />
         </div>
         <div class="col-5 message-input">
             <input type="text" class="w-100" id="messageInput" placeholder="Type your message" />

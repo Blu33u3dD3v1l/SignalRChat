@@ -14,7 +14,9 @@ connection.on("ReceiveMessage", function (message) {
 });
 
 connection.start().then(function () {
-
+    connection.invoke("GetConnectionId").then(function (id) {
+        document.getElementById("connectionId").innerText = id;
+    });
     document.getElementById("sendButton").disabled = false;
 }).catch(function (err) {
 
@@ -22,8 +24,7 @@ connection.start().then(function () {
 });
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
-
-   
+  
     var message = document.getElementById("messageInput").value;
     connection.invoke("SendMessage", message).catch(function (err) {
 
@@ -31,4 +32,17 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     });
     event.preventDefault();
 });
+
+
+document.getElementById("sendUser").addEventListener("click", function (event) {
+
+    var receiverConnectionId = document.getElementById("receiverId").value;
+    var message = document.getElementById("messageInput").value;
+    connection.invoke("SendToUser", receiverConnectionId, message).catch(function (err) {
+
+        return cosole.error(err.toString());
+    });
+    event.preventDefault();
+});
+
 
